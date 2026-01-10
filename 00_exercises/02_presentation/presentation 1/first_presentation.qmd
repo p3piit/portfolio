@@ -1,0 +1,23 @@
+---
+title: "Title!!"
+format: 
+  revealjs:
+    margin: 0.075
+    scrollable: true
+    logo: "images/logo.jpg"
+editor: visual
+author: 
+  - name: Paolo Colussi
+    orcid: 0009-0009-7048-7559
+    email: p.colussi@uu.nl
+---
+
+## My favorite equation!!
+
+$$
+N(\mu,\sigma) \sim \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+## Information about me
+
+My shoe number is 44 1/2.

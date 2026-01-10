@@ -1,0 +1,137 @@
+---
+title: "Should we all die? Yes."
+format: 
+  revealjs:
+    margin: 0.075
+    scrollable: true
+    logo: "images/logo.jpg"
+editor: visual
+bibliography: "bibliography/mlarpis_ex2.bib"
+author: 
+  - name: Paolo Colussi
+    orcid: 0009-0009-7048-7559
+    email: p.colussi@uu.nl
+---
+
+## Enbrace Voluntary Human Extinction!!
+
+![](images/image.jpg){fig-align="center" width="70%"}
+
+## Population table
+
+Look!! We grow way too fast!! Time to stop!
+
+```{r}
+library(tidyverse)
+population <- read_csv("data/population.csv") 
+rownames(population) <- 1950:2101
+library(DT)
+population |> 
+  datatable(options = list(pageLength = 25))
+```
+
+## Figure
+
+```{r}
+#| cache: true
+#| code-line-numbers: true
+#| label: figure
+#| echo: false
+library(plotly)
+library(codetools)
+
+df_long <- rownames_to_column(population) %>%
+  mutate(Year = as.numeric(rowname))  %>%
+  select(-rowname) %>%
+  pivot_longer(
+    cols = -Year,
+    names_to = "Area",
+    values_to = "Population"
+  )
+
+fig <- plot_ly(
+  data = df_long,
+  x = ~Year,
+  y = ~Population,
+  color = ~Area,
+  type = 'scatter',
+  mode = 'lines',
+  text = ~Area,         # hover text = area
+  hoverinfo = "text"    # only show the text
+) %>%
+  layout(
+    title = "Population by Area over Time",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Population"),
+    showlegend = FALSE  # hide legend
+  )
+
+fig
+
+```
+
+## Malthus Grown model
+
+**Let's now consider the Malthus grown model:**
+
+Let $N(t)$ be the number of individuals in a population at time $t$, and let $b$ and $d$ be the average per capita birth rate and death rate, respectively. In a short time $\Delta t$, the number of births in the population is $b\Delta tN$, and the number of deaths is $d\Delta tN$. An equation for $N$ at time $t + \Delta t$ is then determined to be
+
+$$
+N(t + \Delta t)= N(t) + b\Delta tN(t) + d\Delta tN(t)
+$$
+
+which can be rearranged to
+
+$$
+\frac{N(t + \Delta t) - N(t)}{\Delta t}=(b- d)N(t)
+$$
+
+and as $\Delta t \to 0$
+
+$$
+\frac{dN}{dt}=(b- d)N(t)
+$$
+
+With an initial population size of $N_0$, and with $r = b-d$ positive, the solution for $N = N(t)$ grows exponentially:
+
+$$
+N(t) = N_0e^{rt}
+$$
+
+## Malthus Grown model
+
+::::: columns
+::: {.column width="50%"}
+**You have now considered the Malthus Grown model!!! Good for you!!!**
+
+![](images/emoji.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/giphy.gif){fig-align="center"} **No really that's great**
+:::
+:::::
+
+## Reference list
+
+I asked chatGPT a couple of article about the topic, and @galor_population_2000 and @ashraf_dynamics_2011 is what I got, so probably is good? I guess???
+
+::: {#refs}
+:::
+
+## renv Enviroment
+
+This is a renv eniroment. Really really hard to remain on topic here.
+
+```{r}
+#| cache: true
+#| eval: false
+#| echo: true
+
+library(renv)
+
+renv::init()  
+
+renv::restore()
+
+```
