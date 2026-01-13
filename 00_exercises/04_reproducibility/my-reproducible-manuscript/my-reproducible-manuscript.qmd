@@ -1,0 +1,69 @@
+---
+title: "My Reproducible Manuscript"
+author: "Paolo Colussi"
+format: pdf
+bibliography: references.bib
+---
+
+```{r, echo=FALSE}
+# Load penguins
+library(ggplot2)
+```
+
+
+Meet Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. 
+To learn more about Quarto see <https://quarto.org>.
+
+Meet the penguins
+
+The `penguins` data from the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) package contains size measurements for 344 penguins from three species observed on three islands in the Palmer Archipelago, Antarctica. 
+@PalmerpenguinsDataPackage
+
+If you want to know more about penguins, check out the this article: @subramanianEvidenceRecentOrigin2013
+
+![penguins](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+## Results
+
+```{r}
+# Read data
+penguins <- read.csv("data/data.csv")
+```
+
+```{r}
+# Plot penguins
+ggplot(penguins, 
+       aes(x = `Flipper.Length..mm.`, y = `Culmen.Length..mm.`)) +
+        geom_point(aes(color = Species, shape = Species)) +
+        scale_color_manual(values = c("darkorange","purple","cyan4")) +
+        labs(
+                title = "Flipper and Culmen length",
+                subtitle = "Dimensions for penguins at Palmer Station LTER",
+                x = "Flipper length (mm)", y = "Culmen length (mm)",
+                color = "Penguin species", shape = "Penguin species"
+        ) +
+        theme_minimal()
+```
+
+There are more than `r 25 + 25` in total, and `r sum(penguins$Species=='Gentoo penguin (Pygoscelis papua)')` Gentoo penguins and `r sum(penguins$Species=='Chinstrap penguin (Pygoscelis antarctica)')` Chinstrap penguins.
+
+```{r}
+#| file: "scripts/do_addition.R"
+#| eval: true 
+```
+
+```{r}
+do_addition(1,1)
+```
+
+
+
+
+
+
+
+
+
+
