@@ -6,3 +6,6 @@ Deliverable 3: Reusable `R` code wrapped in an `R` package or `Shiny` app.
 - If `Shiny app`, link the app on a `Shiny` server and your development repository (on GitHub).
 
 See course manual for requirements.
+
+You can find the website for my package here: https://p3piit.github.io/mlml/
+The package is at https://github.com/p3piit/mlml
